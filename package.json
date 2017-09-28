@@ -1,0 +1,28 @@
+{
+  "name": "fikfakfok",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "next start",
+    "build": "next build",
+    "dev": "next"
+  },
+  "author": "Andy Bitz",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      "inline-react-svg"
+    ]
+  },
+  "dependencies": {
+    "next": "^4.0.0-beta.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^0.4.0"
+  }
+}
