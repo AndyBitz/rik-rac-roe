@@ -40,17 +40,48 @@ export default class extends Component {
   constructor(props) {
     super(props)
     this.set = this.set.bind(this)
+    this.nextPlayer = this.nextPlayer.bind(this)
+    this.checkStatus = this.checkStatus.bind(this)
 
     this.state = {
       gamestate: {
         grids: getDefaultGrids(this.set),
-        turningPlayer: 0
+        turningPlayer: 1
       }
     }
   }
 
-  async set(grid, field) {
+  nextPlayer() {
+    if (this.state.gamestate.turningPlayer === 1) {
+      return 2
+    } else {
+      return 1
+    }
+  }
+
+  set(grid, field) {
     // set the selected field to the player whos turn is
+    const newState = this.state.gamestate
+
+    if (newState.grids[grid][field].owner !== null) {
+      return
+    }
+
+    // set the owner for the field
+    newState.grids[grid][field].owner = this.state.gamestate.turningPlayer
+    
+    // TODO
+    // check fields for a horizontal, vertical or diagonal row
+    this.checkStatus()
+
+    // next players turn
+    newState.turningPlayer = this.nextPlayer()
+
+    this.setState({ gamestate: newState })
+  }
+
+  checkStatus() {
+
   }
 
   render() {
@@ -59,7 +90,6 @@ export default class extends Component {
         <MenuBar />
         <PlayArea
           gamestate={this.state.gamestate}
-          setCallback={this.set}
         />
       </Layout>
     )

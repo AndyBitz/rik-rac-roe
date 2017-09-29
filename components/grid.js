@@ -6,11 +6,26 @@ const RenderGroups = (item, index) => {
   let x = col*50 + 5
   let y = row*50 + 5
 
+  let content = null
+
+  if (item.owner === 1) {
+    // player one
+    content = <text transform="translate(15, 25)">x</text>
+  } else if (item.owner === 2) {
+    // player two
+    content = <text transform="translate(15, 25)">o</text>
+  }
+
   return (
     <g key={index} transform={`translate(${x}, ${y})`} onClick={() => { item.set() }}>
       <rect width="40" height="40" x="0" y="0" className="grid-rect" />
+      { content }
       <style jsx>
       {`
+        :global(text) {
+          fill: white;
+        }
+
         rect {
           fill: rgba(0,0,0,0);
           cursor: pointer;
