@@ -25,7 +25,12 @@ const getDefaultFields = (grid, setter) => {
       setter(grid, i)
     }
 
-    fields.push({ set, grid, field: i })
+    fields.push({
+      set,
+      grid,
+      field: i,
+      owner: null
+    })
   }
 
   return fields

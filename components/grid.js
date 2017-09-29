@@ -12,7 +12,7 @@ const RenderGroups = (item, index) => {
       <style jsx>
       {`
         rect {
-          fill: rgba(0,0,0,.3);
+          fill: rgba(0,0,0,0);
           cursor: pointer;
         }
       `}
