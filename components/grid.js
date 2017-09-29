@@ -7,14 +7,21 @@ const RenderGroups = (item, index) => {
   let y = row*50 + 5
 
   return (
-    <g key={index} transform={`translate(${x}, ${y})`}>
+    <g key={index} transform={`translate(${x}, ${y})`} onClick={() => { item.set() }}>
       <rect width="40" height="40" x="0" y="0" className="grid-rect" />
-      <text transform="translate(15, 25)" fill="red">{ item }</text>
+      <style jsx>
+      {`
+        rect {
+          fill: rgba(0,0,0,.3);
+          cursor: pointer;
+        }
+      `}
+      </style>
     </g>
   )
 }
 
-export default ({ fields=[1,2,3,4,5,6,7,8,9] }) => (
+export default ({ fields }) => (
   <section>
     <svg viewBox="-10 -10 170 170" height="100%" width="100%">
       { /* Vertical */ }
@@ -39,11 +46,6 @@ export default ({ fields=[1,2,3,4,5,6,7,8,9] }) => (
 
       g line {
         stroke: #ffffff;
-      }
-
-      .grid-rect {
-        fill: rgba(0,0,0,1);
-        cursor: pointer;
       }
     `}
     </style>

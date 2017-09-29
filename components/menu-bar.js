@@ -8,10 +8,12 @@ export default () => (
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #2c2c2c;
+        background-color: #0e0e0e;
         color: white;
         font-family: sans-serif;
-        box-shadow: 2px 0px 2px rgba(0,0,0,.83)
+        z-index: 100;
+        position: relative;
+        box-shadow: 0px 1px 11px 0px rgba(0,0,0,.82);
       }
     `}
     </style>
