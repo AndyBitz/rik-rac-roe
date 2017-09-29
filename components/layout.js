@@ -15,6 +15,7 @@ export default ({ children, title="games" }) => (
         padding: 0;
         font-size: 18px;
         font-family: monospace;
+        background-color: #2c2c2c;
       }
 
       img {
@@ -22,7 +23,7 @@ export default ({ children, title="games" }) => (
       }
 
       main {
-
+        
       }
     `}
     </style>

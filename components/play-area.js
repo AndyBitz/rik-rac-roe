@@ -17,7 +17,7 @@ const GridRow = ({ children }) => (
   </div>
 )
 
-export default () => (
+export default ({ gamestate }) => (
   <section>
     <div>
       <GridRow>
@@ -40,8 +40,16 @@ export default () => (
     <style jsx>
     {`
       section {
+        margin: auto;
+        width: 100vw;
         display: flex;
         justify-content: center;
+      }
+
+      @media (orientation: landscape) {
+        section {
+          width: 100vh;
+        }
       }
     `}
     </style>    
