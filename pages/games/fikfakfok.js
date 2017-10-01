@@ -5,6 +5,8 @@ import { Component } from 'react'
 import Layout from '../../components/layout'
 import PlayArea from '../../components/play-area'
 import MenuBar from '../../components/menu-bar'
+import TurnDisplay from '../../components/turn-display'
+import IngameControls from '../../components/ingame-controls'
 
 
 const getDefaultGrids = (setter) => {
@@ -36,18 +38,29 @@ const getDefaultFields = (grid, setter) => {
   return fields
 }
 
+const getDefaultGamestate = (setter) => ({
+  grids: getDefaultGrids(setter),
+  turningPlayer: 1
+})
+
 export default class extends Component {
+  static async getInitialProps() {
+    return {
+      history: []
+    }
+  }
+
   constructor(props) {
     super(props)
     this.set = this.set.bind(this)
     this.nextPlayer = this.nextPlayer.bind(this)
     this.checkStatus = this.checkStatus.bind(this)
+    this.resetGame = this.resetGame.bind(this)
+    this.addToHistory = this.addToHistory.bind(this)
+    this.undo = this.undo.bind(this)
 
     this.state = {
-      gamestate: {
-        grids: getDefaultGrids(this.set),
-        turningPlayer: 1
-      }
+      gamestate: getDefaultGamestate(this.set)
     }
   }
 
@@ -57,6 +70,25 @@ export default class extends Component {
     } else {
       return 1
     }
+  }
+
+  addToHistory(grid, field) {
+    this.props.history.push({ grid, field })
+  }
+
+  undo() {
+    const last = this.props.history.pop()
+
+    if (last === undefined) {
+      return
+    }
+
+    const state = this.state.gamestate
+
+    state.grids[last.grid][last.field].owner = null
+    state.turningPlayer = this.nextPlayer() // next player is previous player
+
+    this.setState({ gamestate: state })
   }
 
   set(grid, field) {
@@ -69,8 +101,10 @@ export default class extends Component {
 
     // set the owner for the field
     newState.grids[grid][field].owner = this.state.gamestate.turningPlayer
+
+    // add to history stack
+    this.addToHistory(grid, field)
     
-    // TODO
     // check fields for a horizontal, vertical or diagonal row
     this.checkStatus()
 
@@ -81,15 +115,26 @@ export default class extends Component {
   }
 
   checkStatus() {
+    // TODO
+  }
 
+  resetGame() {
+    const gamestate = getDefaultGamestate(this.set)
+    this.setState({ gamestate })
   }
 
   render() {
+    const { gamestate } = this.state
+    const { turningPlayer } = gamestate
+
     return (
       <Layout title="fik fak fok">
         <MenuBar />
-        <PlayArea
-          gamestate={this.state.gamestate}
+        <PlayArea gamestate={gamestate} />
+        <TurnDisplay turningPlayer={turningPlayer} />
+        <IngameControls
+          resetGame={this.resetGame}
+          undo={this.undo}
         />
       </Layout>
     )
