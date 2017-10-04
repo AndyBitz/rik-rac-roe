@@ -9,40 +9,6 @@ import TurnDisplay from '../../components/turn-display'
 import IngameControls from '../../components/ingame-controls'
 
 
-const getDefaultGrids = (setter) => {
-  const grids = []
-
-  for (let i=0; i < 9; i++) {
-    grids.push(getDefaultFields(i, setter))
-  }
-
-  return grids
-}
-
-const getDefaultFields = (grid, setter) => {
-  const fields = []
-
-  for (let i=0; i < 9; i++) {
-    const set = () => {
-      setter(grid, i)
-    }
-
-    fields.push({
-      set,
-      grid,
-      field: i,
-      owner: null
-    })
-  }
-
-  return fields
-}
-
-const getDefaultGamestate = (setter) => ({
-  grids: getDefaultGrids(setter),
-  turningPlayer: 1
-})
-
 export default class extends Component {
   static async getInitialProps() {
     return {
@@ -58,18 +24,49 @@ export default class extends Component {
     this.resetGame = this.resetGame.bind(this)
     this.addToHistory = this.addToHistory.bind(this)
     this.undo = this.undo.bind(this)
+    this.getDefaultGameState = this.getDefaultGameState.bind(this)
 
     this.state = {
-      gamestate: getDefaultGamestate(this.set)
+      gamestate: this.getDefaultGameState()
+    }
+  }
+
+  getDefaultGameState() {
+    const grids = []
+
+    const getFields = (grid) => {
+      const fields = []
+
+      for (let field=0; field < 9; field++) {
+        fields.push({
+          grid,
+          field,
+          set: () => this.set(grid, field),
+          owner: null
+        })
+      }
+
+      return fields
+    }
+
+    for (let i=0; i < 9; i++) {
+      grids.push({
+        grid: i,
+        fields: getFields(i),
+        owner: null
+      })
+    }
+
+    return {
+      grids,
+      turningPlayer: 1
     }
   }
 
   nextPlayer() {
-    if (this.state.gamestate.turningPlayer === 1) {
-      return 2
-    } else {
-      return 1
-    }
+    return (this.state.gamestate.turningPlayer === 1)
+      ? 2
+      : 1
   }
 
   addToHistory(grid, field) {
@@ -85,7 +82,7 @@ export default class extends Component {
 
     const state = this.state.gamestate
 
-    state.grids[last.grid][last.field].owner = null
+    state.grids[last.grid].fields[last.field].owner = null
     state.turningPlayer = this.nextPlayer() // next player is previous player
 
     this.setState({ gamestate: state })
@@ -95,12 +92,12 @@ export default class extends Component {
     // set the selected field to the player whos turn is
     const newState = this.state.gamestate
 
-    if (newState.grids[grid][field].owner !== null) {
+    if (newState.grids[grid].fields[field].owner !== null) {
       return
     }
 
     // set the owner for the field
-    newState.grids[grid][field].owner = this.state.gamestate.turningPlayer
+    newState.grids[grid].fields[field].owner = this.state.gamestate.turningPlayer
 
     // add to history stack
     this.addToHistory(grid, field)
@@ -119,7 +116,7 @@ export default class extends Component {
   }
 
   resetGame() {
-    const gamestate = getDefaultGamestate(this.set)
+    const gamestate = this.getDefaultGameState()
     this.setState({ gamestate })
   }
 

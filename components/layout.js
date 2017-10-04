@@ -27,6 +27,10 @@ export default ({ children, title="games" }) => (
         vertical-align: middle;
       }
 
+      a {
+        color: white;
+      }
+
       main {
         
       }
