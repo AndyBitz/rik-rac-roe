@@ -36,33 +36,48 @@ const RenderGroups = (item, index) => {
   )
 }
 
-export default ({ fields, owner }) => (
-  <section>
-    <svg viewBox="-10 -10 170 170" height="100%" width="100%">
-      { /* Vertical */ }
-      <line x1="50" y1="0" x2="50" y2="150" className="grid-lines" />
-      <line x1="100" y1="0" x2="100" y2="150" className="grid-lines" />
+export default ({ fields, owner }) => {
 
-      { /* Horizontal */ }
-      <line x1="0" y1="50" x2="150" y2="50" className="grid-lines" />
-      <line x1="0" y1="100" x2="150" y2="100" className="grid-lines" />
+  // show owner of field if there is one
+  if (owner) {
+    return (
+      <section>
+        <svg viewBox="0 0 100 100" height="100%" width="100%">
+          <text transform="translate(50, 50)">{ owner === 1 ? 'x' : 'o' }</text>
+        </svg>
+      </section>
+    )
+  }
 
-      { /* Content */ }
-      { fields.map(RenderGroups) }
-    </svg>
+  // render field
+  return (
+    <section>
+      <svg viewBox="-10 -10 170 170" height="100%" width="100%">
+        { /* Vertical */ }
+        <line x1="50" y1="0" x2="50" y2="150" className="grid-lines" />
+        <line x1="100" y1="0" x2="100" y2="150" className="grid-lines" />
 
-    <style jsx>
-    {`
-      .grid-lines {
-        stroke: #ffffff;
-        stroke-width: 3;
-        stroke-linecap: round;
-      }
+        { /* Horizontal */ }
+        <line x1="0" y1="50" x2="150" y2="50" className="grid-lines" />
+        <line x1="0" y1="100" x2="150" y2="100" className="grid-lines" />
 
-      g line {
-        stroke: #ffffff;
-      }
-    `}
-    </style>
-  </section>
-)
+        { /* Content */ }
+        { fields.map(RenderGroups) }
+      </svg>
+
+      <style jsx>
+      {`
+        .grid-lines {
+          stroke: #ffffff;
+          stroke-width: 3;
+          stroke-linecap: round;
+        }
+
+        g line {
+          stroke: #ffffff;
+        }
+      `}
+      </style>
+    </section>
+  )
+}

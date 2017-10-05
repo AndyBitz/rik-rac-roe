@@ -74,6 +74,7 @@ export default class extends Component {
     this.history.push({ grid, field })
   }
 
+  // !sets state
   undo() {
     const last = this.history.pop()
 
@@ -81,17 +82,20 @@ export default class extends Component {
       return
     }
 
-    const state = this.state.gamestate
+    let state = this.state.gamestate
 
     state.grids[last.grid].fields[last.field].owner = null
     state.turningPlayer = this.nextPlayer() // next player is previous player
 
+    state = this.checkStatus(state)
+
     this.setState({ gamestate: state })
   }
 
+  // !sets state
   set(grid, field) {
     // set the selected field to the player whos turn is
-    const newState = this.state.gamestate
+    let newState = this.state.gamestate
 
     if (newState.grids[grid].fields[field].owner !== null) {
       return
@@ -104,7 +108,7 @@ export default class extends Component {
     this.addToHistory(grid, field)
     
     // check fields for a horizontal, vertical or diagonal row
-    this.checkStatus()
+    newState = this.checkStatus(newState)
 
     // next players turn
     newState.turningPlayer = this.nextPlayer()
@@ -112,25 +116,32 @@ export default class extends Component {
     this.setState({ gamestate: newState })
   }
 
-  checkStatus() {
-    const { grids } = this.state.gamestate
+
+  /**
+   * check status of a new gamestate and
+   * return updated gamestate
+   */
+  checkStatus(newState) {
+    const { grids } = newState
 
     for (let gi in grids) {
       const { fields } = grids[gi]
 
       const owner = this.checkPatterns(fields)
       if (owner !== null) {
-        this.setGridOwner(gi, owner)
+        newState.grids[gi].owner = owner
       }
     }
+
+    return newState
   }
 
-  setGridOwner(grid, owner) {
-    const { gamestate } = this.state
-    gamestate.grids[grid].owner = owner
-    this.setState({ gamestate })
-  }
 
+  /**
+   * check owners of array and
+   * check if the match the pattern
+   * return owner or null
+   */
   checkPatterns(fields) {
     const own = []    
 
