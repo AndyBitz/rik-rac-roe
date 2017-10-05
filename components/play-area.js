@@ -21,19 +21,19 @@ export default ({ gamestate }) => (
   <section>
     <div>
       <GridRow>
-        <Grid fields={gamestate.grids[0].fields} />
-        <Grid fields={gamestate.grids[1].fields} />
-        <Grid fields={gamestate.grids[2].fields} />
+        <Grid {...gamestate.grids[0]} />
+        <Grid {...gamestate.grids[1]} />
+        <Grid {...gamestate.grids[2]} />
       </GridRow>
       <GridRow>
-        <Grid fields={gamestate.grids[3].fields} />
-        <Grid fields={gamestate.grids[4].fields} />
-        <Grid fields={gamestate.grids[5].fields} />
+        <Grid {...gamestate.grids[3]} />
+        <Grid {...gamestate.grids[4]} />
+        <Grid {...gamestate.grids[5]} />
       </GridRow>
       <GridRow>
-        <Grid fields={gamestate.grids[6].fields} />
-        <Grid fields={gamestate.grids[7].fields} />
-        <Grid fields={gamestate.grids[8].fields} />
+        <Grid {...gamestate.grids[6]} />
+        <Grid {...gamestate.grids[7]} />
+        <Grid {...gamestate.grids[8]} />
       </GridRow>
     </div>
 

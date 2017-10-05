@@ -36,7 +36,7 @@ const RenderGroups = (item, index) => {
   )
 }
 
-export default ({ fields }) => (
+export default ({ fields, owner }) => (
   <section>
     <svg viewBox="-10 -10 170 170" height="100%" width="100%">
       { /* Vertical */ }

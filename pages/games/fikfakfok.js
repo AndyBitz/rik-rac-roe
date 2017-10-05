@@ -11,9 +11,7 @@ import IngameControls from '../../components/ingame-controls'
 
 export default class extends Component {
   static async getInitialProps() {
-    return {
-      history: []
-    }
+    return { }
   }
 
   constructor(props) {
@@ -25,6 +23,9 @@ export default class extends Component {
     this.addToHistory = this.addToHistory.bind(this)
     this.undo = this.undo.bind(this)
     this.getDefaultGameState = this.getDefaultGameState.bind(this)
+    this.setGridOwner = this.setGridOwner.bind(this)
+
+    this.history = []
 
     this.state = {
       gamestate: this.getDefaultGameState()
@@ -70,11 +71,11 @@ export default class extends Component {
   }
 
   addToHistory(grid, field) {
-    this.props.history.push({ grid, field })
+    this.history.push({ grid, field })
   }
 
   undo() {
-    const last = this.props.history.pop()
+    const last = this.history.pop()
 
     if (last === undefined) {
       return
@@ -112,12 +113,60 @@ export default class extends Component {
   }
 
   checkStatus() {
-    // TODO
+    const { grids } = this.state.gamestate
+
+    for (let gi in grids) {
+      const { fields } = grids[gi]
+
+      const owner = this.checkPatterns(fields)
+      if (owner !== null) {
+        this.setGridOwner(gi, owner)
+      }
+    }
+  }
+
+  setGridOwner(grid, owner) {
+    const { gamestate } = this.state
+    gamestate.grids[grid].owner = owner
+    this.setState({ gamestate })
+  }
+
+  checkPatterns(fields) {
+    const own = []    
+
+    for (let fi in fields) {
+      const field = fields[fi]
+      own.push(field.owner)
+    }
+
+    const areEqual = (ind1, ind2, ind3) => {
+      const v1 = own[ind1]
+      const v2 = own[ind2]
+      const v3 = own[ind3]
+
+      return (v1 === v1 && v1 === v2 && v1 === v3 && v1 !== null) ? v1 : false
+    }
+
+    // Horizontal - 0 1 2 | 3 4 5 | 6 7 8
+    // Vertical - 0 3 6 | 1 4 7 | 2 5 8
+    // Diagonal - 0 4 8 | 2 4 6
+
+    return (
+      areEqual(0, 1, 2) ||
+      areEqual(3, 4, 5) ||
+      areEqual(6, 7, 8) ||
+      areEqual(0, 3, 6) ||
+      areEqual(1, 4, 7) ||
+      areEqual(2, 5, 8) ||
+      areEqual(0, 4, 8) ||
+      areEqual(2, 4, 6)
+    )
   }
 
   resetGame() {
     const gamestate = this.getDefaultGameState()
     this.setState({ gamestate })
+    this.history = []
   }
 
   render() {
