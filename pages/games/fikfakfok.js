@@ -21,6 +21,9 @@ export default class extends Component {
     this.nextPlayer = this.nextPlayer.bind(this)
     this.checkStatus = this.checkStatus.bind(this)
     this.resetGame = this.resetGame.bind(this)
+    this.resetScores = this.resetScores.bind(this)
+    this.getPrevScore = this.getPrevScore.bind(this)
+    this.rematch = this.rematch.bind(this)
     this.addToHistory = this.addToHistory.bind(this)
     this.undo = this.undo.bind(this)
     this.getDefaultGameState = this.getDefaultGameState.bind(this)
@@ -28,7 +31,8 @@ export default class extends Component {
     this.history = []
 
     this.state = {
-      gamestate: this.getDefaultGameState()
+      gamestate: this.getDefaultGameState(),
+      wins: this.getPrevScore()
     }
   }
 
@@ -86,6 +90,7 @@ export default class extends Component {
 
     state.grids[last.grid].fields[last.field].owner = null
     state.turningPlayer = this.nextPlayer() // next player is previous player
+    state.winner = null
 
     state = this.checkStatus(state)
 
@@ -137,8 +142,6 @@ export default class extends Component {
     if (result) {
       newState.winner = result
     }
-    console.log('result of grids')
-    console.log(result)
 
     return newState
   }
@@ -187,6 +190,42 @@ export default class extends Component {
     this.history = []
   }
 
+  rematch(winner) {
+    const { p1, p2 } = this.state.wins
+
+    const wins = {
+      p1: winner === 1 ? p1+1 : p1,
+      p2: winner === 2 ? p2+1 : p2
+    }
+
+    this.setState({
+      gamestate: this.getDefaultGameState(),
+      wins
+    })
+
+    window.localStorage.setItem('fikfakfok/local/scores', JSON.stringify(wins))
+    this.history = []
+  }
+
+  resetScores() {
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem('fikfakfok/local/scores')
+    }
+    this.setState({ wins: { p1: 0, p2: 0 } })
+  }
+
+  getPrevScore() {
+    if (typeof window !== "undefined") {
+      const str = window.localStorage.getItem('fikfakfok/local/scores')
+      if (str !== null) {
+        const wins = JSON.parse(str)
+        return wins
+      }
+    }
+
+    return { p1: 0, p2: 0 }
+  }
+
   render() {
     const { gamestate: gs } = this.state
     const { turningPlayer, winner } = gs
@@ -194,11 +233,22 @@ export default class extends Component {
     return (
       <Layout title="fik fak fok">
         <MenuBar />
-        { winner ? <Winner winner={winner} /> : null }
+        { winner ? 
+          <Winner
+            winner={winner}
+            rematch={() => this.rematch(winner)}
+            undo={this.undo}
+          />
+          : null
+        }
         <PlayArea gamestate={gs} />
-        <TurnDisplay turningPlayer={turningPlayer} />
+        <TurnDisplay
+          wins={this.state.wins}
+          turningPlayer={turningPlayer}
+        />
         <IngameControls
           resetGame={this.resetGame}
+          resetScores={this.resetScores}
           undo={this.undo}
         />
       </Layout>

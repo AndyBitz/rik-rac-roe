@@ -2,14 +2,14 @@
 import Button from './button'
 
 
-export default ({ winner }) => (
+export default ({ winner, rematch, undo }) => (
   <section>
     <div>
       <h2>{ winner === 1 ? 'x' : 'o' }</h2>
       <p><span className="win">won</span> the game</p>
       <div>
-        <Button>Rematch</Button>&nbsp;
-        <Button style={{backgroundColor: '#3c3c3c'}}>Undo</Button>
+        <Button onClick={rematch}>Rematch</Button>&nbsp;
+        <Button style={{backgroundColor: '#3c3c3c'}} onClick={undo}>Undo</Button>
       </div>
     </div>
     <style jsx>

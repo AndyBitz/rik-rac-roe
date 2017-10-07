@@ -2,10 +2,11 @@
 import Button from './button'
 
 
-export default ({ resetGame, undo }) => {
+export default ({ resetGame, resetScores, undo }) => {
   return (
     <section>
       <Button onClick={() => resetGame()}>Reset</Button>
+      <Button onClick={() => resetScores()}>Reset Scores</Button>
       <Button onClick={() => undo()}>Undo</Button>
       <style jsx>
       {`

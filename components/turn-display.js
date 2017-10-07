@@ -1,18 +1,24 @@
-export default ({ turningPlayer }) => {
+export default ({ wins, turningPlayer }) => {
 
   const sign = (turningPlayer === 1) ? 'x' : 'o'
 
   return (
     <div>
-      <span>Player&nbsp;</span><span>{ sign }</span>
+      <p><span>x &#x1f451;&nbsp;</span><span>{ wins.p1 }</span></p>
+      <p><span>Player&nbsp;</span><span>{ sign }</span></p>
+      <p><span>o &#x1f451;&nbsp;</span><span>{ wins.p2 }</span></p>
+
       <style jsx>
       {`
         div {
           display: flex;
-          justify-content: center;
+          justify-content: space-around;
           align-items: center;
-          margin: .5em 0;
+          margin: .5em;
           opacity: .5;
+        }
+        p {
+          display: inline-block;
         }
         span:first-child {
           color: rgba(255,255,255,.5);
