@@ -7,6 +7,7 @@ import PlayArea from '../../components/play-area'
 import MenuBar from '../../components/menu-bar'
 import TurnDisplay from '../../components/turn-display'
 import IngameControls from '../../components/ingame-controls'
+import Winner from '../../components/winner'
 
 
 export default class extends Component {
@@ -23,7 +24,6 @@ export default class extends Component {
     this.addToHistory = this.addToHistory.bind(this)
     this.undo = this.undo.bind(this)
     this.getDefaultGameState = this.getDefaultGameState.bind(this)
-    this.setGridOwner = this.setGridOwner.bind(this)
 
     this.history = []
 
@@ -133,6 +133,13 @@ export default class extends Component {
       }
     }
 
+    const result = this.checkPatterns(newState.grids)
+    if (result) {
+      newState.winner = result
+    }
+    console.log('result of grids')
+    console.log(result)
+
     return newState
   }
 
@@ -181,13 +188,14 @@ export default class extends Component {
   }
 
   render() {
-    const { gamestate } = this.state
-    const { turningPlayer } = gamestate
+    const { gamestate: gs } = this.state
+    const { turningPlayer, winner } = gs
 
     return (
       <Layout title="fik fak fok">
         <MenuBar />
-        <PlayArea gamestate={gamestate} />
+        { winner ? <Winner winner={winner} /> : null }
+        <PlayArea gamestate={gs} />
         <TurnDisplay turningPlayer={turningPlayer} />
         <IngameControls
           resetGame={this.resetGame}
