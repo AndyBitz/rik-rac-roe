@@ -36,7 +36,7 @@ const RenderGroups = (item, index) => {
   )
 }
 
-export default ({ fields, owner }) => {
+export default ({ fields, owner, avail }) => {
 
   // show owner of field if there is one
   if (owner) {
@@ -51,7 +51,7 @@ export default ({ fields, owner }) => {
 
   // render field
   return (
-    <section>
+    <section className={avail ? '' : 'disabled'}>
       <svg viewBox="-10 -10 170 170" height="100%" width="100%">
         { /* Vertical */ }
         <line x1="50" y1="0" x2="50" y2="150" className="grid-lines" />
@@ -67,6 +67,14 @@ export default ({ fields, owner }) => {
 
       <style jsx>
       {`
+        section {
+          transition: all 200ms ease-out;
+        }
+
+        section.disabled {
+          opacity: .6;
+          transform: scale(.8);
+        }
         .grid-lines {
           stroke: #ffffff;
           stroke-width: 3;

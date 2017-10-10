@@ -58,7 +58,8 @@ export default class extends Component {
       grids.push({
         grid: i,
         fields: getFields(i),
-        owner: null
+        owner: null,
+        avail: true
       })
     }
 
@@ -117,6 +118,14 @@ export default class extends Component {
 
     // next players turn
     newState.turningPlayer = this.nextPlayer()
+
+    // set the next available grid and the others to false
+    newState.grids = newState.grids.map((item) => {
+      item.avail = false
+      return item
+    })
+
+    newState.grids[field].avail = true
 
     this.setState({ gamestate: newState })
   }

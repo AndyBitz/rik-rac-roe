@@ -5,8 +5,8 @@ import Head from 'next/head'
 export default ({ children, title="games" }) => (
   <main>
     <Head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
       <meta name="robots" content="index, follow" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       { /* TODO: social media tags */ }
