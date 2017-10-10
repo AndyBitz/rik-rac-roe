@@ -240,20 +240,20 @@ export default class extends Component {
       wins
     })
 
-    window.localStorage.setItem('fikfakfok/local/scores', JSON.stringify(wins))
+    window.localStorage.setItem('fikfakfoe/local/scores', JSON.stringify(wins))
     this.history = []
   }
 
   resetScores() {
     if (typeof window !== "undefined") {
-      window.localStorage.removeItem('fikfakfok/local/scores')
+      window.localStorage.removeItem('fikfakfoe/local/scores')
     }
     this.setState({ wins: { p1: 0, p2: 0 } })
   }
 
   getPrevScore() {
     if (typeof window !== "undefined") {
-      const str = window.localStorage.getItem('fikfakfok/local/scores')
+      const str = window.localStorage.getItem('fikfakfoe/local/scores')
       if (str !== null) {
         const wins = JSON.parse(str)
         return wins

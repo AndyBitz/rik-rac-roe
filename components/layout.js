@@ -21,6 +21,7 @@ export default ({ children, title="games" }) => (
         font-size: 18px;
         font-family: monospace;
         background-color: #2c2c2c;
+        color: white;
       }
 
       img {
@@ -28,6 +29,9 @@ export default ({ children, title="games" }) => (
       }
 
       a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
         color: white;
       }
 
