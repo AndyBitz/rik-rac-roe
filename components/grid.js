@@ -1,39 +1,48 @@
-const RenderGroups = (item, index) => {
+const RenderGroups = ({avail, fields}) => {
+  return fields.map((item, index) => {
+    const row = (index > 5) ? 2 : (index > 2) ? 1 : 0
+    const col = index - row*3
 
-  const row = (index > 5) ? 2 : (index > 2) ? 1 : 0
-  const col = index - row*3
+    let x = col*50 + 5
+    let y = row*50 + 5
 
-  let x = col*50 + 5
-  let y = row*50 + 5
+    let content = null
 
-  let content = null
+    if (item.owner === 1) {
+      // player one
+      content = <text transform="translate(15, 25)">x</text>
+    } else if (item.owner === 2) {
+      // player two
+      content = <text transform="translate(15, 25)">o</text>
+    }
 
-  if (item.owner === 1) {
-    // player one
-    content = <text transform="translate(15, 25)">x</text>
-  } else if (item.owner === 2) {
-    // player two
-    content = <text transform="translate(15, 25)">o</text>
-  }
+    const handler = avail
+      ? () => { item.set() }
+      : null
 
-  return (
-    <g key={index} transform={`translate(${x}, ${y})`} onClick={() => { item.set() }}>
-      <rect width="40" height="40" x="0" y="0" className="grid-rect" />
-      { content }
-      <style jsx>
-      {`
-        :global(text) {
-          fill: white;
-        }
+    return (
+      <g key={index} transform={`translate(${x}, ${y})`} onClick={handler}>
+        <rect width="40" height="40" x="0" y="0" className={avail ? '' : 'rect-disabled'} />
+        { content }
+        <style jsx>
+        {`
+          :global(text) {
+            fill: white;
+          }
 
-        rect {
-          fill: rgba(0,0,0,0);
-          cursor: pointer;
-        }
-      `}
-      </style>
-    </g>
-  )
+          rect {
+            fill: rgba(0,0,0,0);
+            cursor: pointer;
+          }
+
+          .rect-disabled {
+            cursor: default;
+          }
+        `}
+        </style>
+      </g>
+    )
+  })
 }
 
 export default ({ fields, owner, avail }) => {
@@ -62,7 +71,10 @@ export default ({ fields, owner, avail }) => {
         <line x1="0" y1="100" x2="150" y2="100" className="grid-lines" />
 
         { /* Content */ }
-        { fields.map(RenderGroups) }
+        <RenderGroups
+          avail={avail}
+          fields={fields}
+        />
       </svg>
 
       <style jsx>
@@ -70,7 +82,6 @@ export default ({ fields, owner, avail }) => {
         section {
           transition: all 200ms ease-out;
         }
-
         section.disabled {
           opacity: .6;
           transform: scale(.8);
@@ -80,7 +91,6 @@ export default ({ fields, owner, avail }) => {
           stroke-width: 3;
           stroke-linecap: round;
         }
-
         g line {
           stroke: #ffffff;
         }

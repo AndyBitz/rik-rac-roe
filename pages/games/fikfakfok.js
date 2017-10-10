@@ -95,6 +95,21 @@ export default class extends Component {
 
     state = this.checkStatus(state)
 
+    // reset avail (all fields if last item in history)
+    if (this.history.length === 0) {
+      state.grids = state.grids.map((item) => {
+        item.avail = true
+        return item
+      })
+    } else {
+      state.grids = state.grids.map((item) => {
+        item.avail = false
+        return item
+      })
+
+      state.grids[last.grid].avail = true
+    }
+
     this.setState({ gamestate: state })
   }
 
@@ -125,7 +140,20 @@ export default class extends Component {
       return item
     })
 
-    newState.grids[field].avail = true
+    // check fields for availability
+    if (newState.grids[field].owner === false) {
+      // make all fields available
+      // if the next one has already an owner
+      newState.grids[field].avail = true
+    } else {
+      newState.grids = newState.grids.map((item) => {
+        if (item.owner === false) {
+          item.avail = true
+        }
+
+        return item
+      })
+    }
 
     this.setState({ gamestate: newState })
   }
