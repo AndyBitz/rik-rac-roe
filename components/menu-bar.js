@@ -20,7 +20,7 @@ export default () => (
         </a>
       </Link>
     </div>
-    <div>Fik Fak Foe</div>
+    <div>Fik-Fak-Foe</div>
     <div></div>
     <style jsx>
     {`

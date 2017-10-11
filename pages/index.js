@@ -9,7 +9,7 @@ import Button from '../components/button'
 
 export default () => (
   <Layout>
-    <H style={{ textAlign: 'center' }}>Fik Fak Foe</H>
+    <H style={{ textAlign: 'center' }}>Fik-Fak-Foe</H>
     <P style={{ textAlign: 'center' }}>Tik Tak Toe for the really bored.</P>
     <Center>
       <Button>
