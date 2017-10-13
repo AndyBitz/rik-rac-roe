@@ -144,18 +144,18 @@ export default class extends Component {
     })
 
     // check fields for availability
-    if (newState.grids[field].owner === false) {
+    // has to be !== false, because owner could be 'none'
+    if (newState.grids[field].owner !== false) {
       // make all fields available
       // if the next one has already an owner
-      newState.grids[field].avail = true
-    } else {
       newState.grids = newState.grids.map((item) => {
-        if (item.owner === false) {
-          item.avail = true
-        }
-
+        // check if grid has an owner or if all fields are set
+        item.avail = !item.owner // no owner = avail
         return item
       })
+    } else {
+      // make next field available
+      newState.grids[field].avail = true
     }
 
     this.setState({ gamestate: newState })
@@ -179,9 +179,11 @@ export default class extends Component {
     }
 
     const result = this.checkPatterns(newState.grids)
-    if (result) {
+    if (result && result !== 'none') {
       newState.winner = result
     }
+
+    console.log(newState)
 
     return newState
   }
@@ -198,6 +200,11 @@ export default class extends Component {
     for (let fi in fields) {
       const field = fields[fi]
       own.push(field.owner)
+    }
+
+    const allSet = () => {
+      const allSet = fields.every(field => field.owner)
+      return allSet ? 'none' : false
     }
 
     const areEqual = (ind1, ind2, ind3) => {
@@ -220,7 +227,8 @@ export default class extends Component {
       areEqual(1, 4, 7) ||
       areEqual(2, 5, 8) ||
       areEqual(0, 4, 8) ||
-      areEqual(2, 4, 6)
+      areEqual(2, 4, 6) ||
+      allSet()
     )
   }
 

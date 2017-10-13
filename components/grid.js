@@ -48,7 +48,7 @@ const RenderGroups = ({avail, fields}) => {
 export default ({ fields, owner, avail }) => {
 
   // show owner of field if there is one
-  if (owner) {
+  if (owner && owner !== 'none') {
     return (
       <section>
         <svg viewBox="0 0 100 100" height="100%" width="100%">
