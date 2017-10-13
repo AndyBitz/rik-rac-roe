@@ -12,7 +12,7 @@ export default () => (
     <H style={{ textAlign: 'center' }}>Fik-Fak-Foe</H>
     <P style={{ textAlign: 'center' }}>
       Tik Tak Toe for the really bored.<br />
-      <span style={{ fontSize: '.9em' }}>Or challange seekers.</span>
+      <span style={{ fontSize: '.9em' }}>Or the challange seekers.</span>
     </P>
     <Center>
       <Button>
