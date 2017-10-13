@@ -8,6 +8,9 @@ import MenuBar from '../../components/menu-bar'
 import TurnDisplay from '../../components/turn-display'
 import IngameControls from '../../components/ingame-controls'
 import Winner from '../../components/winner'
+import GameLayout, {
+  GameInfoLayout
+} from '../../components/game-layout'
 
 
 export default class extends Component {
@@ -270,6 +273,7 @@ export default class extends Component {
     return (
       <Layout title="fik fak fok">
         <MenuBar />
+        <GameLayout>
         { winner ? 
           <Winner
             winner={winner}
@@ -279,15 +283,18 @@ export default class extends Component {
           : null
         }
         <PlayArea gamestate={gs} />
-        <TurnDisplay
-          wins={this.state.wins}
-          turningPlayer={turningPlayer}
-        />
-        <IngameControls
-          resetGame={this.resetGame}
-          resetScores={this.resetScores}
-          undo={this.undo}
-        />
+        <GameInfoLayout>
+          <TurnDisplay
+            wins={this.state.wins}
+            turningPlayer={turningPlayer}
+          />
+          <IngameControls
+            resetGame={this.resetGame}
+            resetScores={this.resetScores}
+            undo={this.undo}
+          />
+        </GameInfoLayout>
+        </GameLayout>
       </Layout>
     )
   }

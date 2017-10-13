@@ -45,6 +45,9 @@ export default () => (
       div:first-child {
         font-size: .8em;
       }
+      div:nth-child(2) {
+        text-align: center;
+      }
       div:last-child {
         font-size: .8em;
       }

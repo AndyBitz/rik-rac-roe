@@ -18,7 +18,7 @@ const GridRow = ({ children }) => (
 )
 
 export default ({ gamestate }) => (
-  <section>
+  <section className="game-area">
     <div>
       <GridRow>
         <Grid {...gamestate.grids[0]} />
@@ -41,14 +41,24 @@ export default ({ gamestate }) => (
     {`
       section {
         margin: auto;
-        width: 100vw;
+        width: 100%;
         display: flex;
         justify-content: center;
       }
 
-      @media (orientation: landscape) {
+      div {
+        padding: 15px;
+      }
+
+      @media (min-width: 425px) {
         section {
-          width: 100vh;
+          width: 90%;
+        }
+      }
+
+      @media (min-width: 768px) {
+        section {
+          max-width: 800px;
         }
       }
     `}

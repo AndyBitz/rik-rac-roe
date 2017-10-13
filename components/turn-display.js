@@ -3,7 +3,7 @@ export default ({ wins, turningPlayer }) => {
   const sign = (turningPlayer === 1) ? 'x' : 'o'
 
   return (
-    <div>
+    <div className="game-status">
       <p><span>x &#x1f451;&nbsp;</span><span>{ wins.p1 }</span></p>
       <p><span>Player&nbsp;</span><span>{ sign }</span></p>
       <p><span>o &#x1f451;&nbsp;</span><span>{ wins.p2 }</span></p>
@@ -17,6 +17,13 @@ export default ({ wins, turningPlayer }) => {
           margin: .5em;
           opacity: .5;
         }
+        @media (min-width: 768px) {
+          div {
+            order: 1;
+            height: 100%;
+          }
+        }
+
         p {
           display: inline-block;
         }

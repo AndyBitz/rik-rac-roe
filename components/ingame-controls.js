@@ -4,7 +4,7 @@ import Button from './button'
 
 export default ({ resetGame, resetScores, undo }) => {
   return (
-    <section>
+    <section className="game-controls">
       <Button onClick={() => resetGame()}>Reset</Button>
       <Button onClick={() => resetScores()}>Reset Scores</Button>
       <Button onClick={() => undo()}>Undo</Button>
@@ -15,6 +15,18 @@ export default ({ resetGame, resetScores, undo }) => {
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+          section {
+            order: 2;
+            height: 100%;
+            justify-content: center;
+          }
+
+          section :global(button) {
+            margin: 0 4px;
+          }
         }
       `}
       </style>
