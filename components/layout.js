@@ -2,7 +2,7 @@
 import Head from 'next/head'
 
 
-export default ({ children, title="games" }) => (
+export default ({ children, title="Fik-Fak-Foe" }) => (
   <main>
     <Head>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

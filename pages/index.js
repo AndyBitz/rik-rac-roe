@@ -16,7 +16,7 @@ export default () => (
     </P>
     <Center>
       <Button>
-        <Link href="/games/fikfakfoe"><a>play local</a></Link>
+        <Link href="/games/fikfakfoe"><a>Play Local</a></Link>
       </Button>
     </Center>
     <style jsx global>

@@ -15,10 +15,11 @@ export default ({ children, ...rest }) => (
         cursor: pointer;
         outline: none;
         transition: all 200ms ease-out;
+        position: relative;
       }
 
       button:focus, button:hover {
-        
+        box-shadow: 0px 2px 4px 2px rgba(0,0,0,.2);
       }
     `}
     </style>

@@ -279,7 +279,7 @@ export default class extends Component {
     const { turningPlayer, winner } = gs
 
     return (
-      <Layout title="fik fak foe">
+      <Layout>
         <MenuBar />
         <GameLayout>
         { winner ? 
