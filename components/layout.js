@@ -9,6 +9,7 @@ export default ({ children, title="Fik-Fak-Foe" }) => (
       <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
       <meta name="robots" content="index, follow" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <link rel="shortcut icon" href="/static/favicon.png" />
       { /* TODO: social media tags */ }
       <title>{ title }</title>
     </Head>

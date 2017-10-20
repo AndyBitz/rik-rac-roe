@@ -25,6 +25,19 @@ export const H = ({ children, ...rest }) => (
   </h1>
 )
 
+export const H2 = ({ children, ...rest }) => (
+  <h2 {...rest}>
+    { children }
+    <style jsx>
+    {`
+      h2 {
+
+      }
+    `}
+    </style>
+  </h2>
+)
+
 export const Center = ({ children, ...rest }) => (
   <div>
     { children }
