@@ -41,7 +41,7 @@ export default class Nav extends Component {
               </a>
             </Link>
           </div>
-          <div>Fik-Fak-Foe</div>
+          <div style={{fontFamily: 'monospace'}}>Fik-Fak-Foe</div>
           <div>
             <a onClick={this.toggleMenu}>
               <Icon children={<InfoOutline />} />

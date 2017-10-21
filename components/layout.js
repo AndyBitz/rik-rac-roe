@@ -1,6 +1,9 @@
 // packages
 import Head from 'next/head'
 
+// components
+import Footer from './footer'
+
 
 export default ({ children, title="Fik-Fak-Foe" }) => (
   <main>
@@ -14,6 +17,7 @@ export default ({ children, title="Fik-Fak-Foe" }) => (
       <title>{ title }</title>
     </Head>
     { children }
+    <Footer />
     <style jsx global>
     {`
       html, body {
