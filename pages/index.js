@@ -15,10 +15,11 @@ export default () => (
       <span style={{ fontSize: '.9em' }}>Or the challange seekers.</span>
     </P>
     <Center>
-      <Button>
+      <Button primary={true}>
         <Link href="/games/fikfakfoe"><a>Play Local</a></Link>
       </Button>
     </Center>
+    <div style={{ marginTop: '2em' }} />
     <style jsx global>
     {`
       main {

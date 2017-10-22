@@ -20,6 +20,11 @@ export default ({ children, title="Fik-Fak-Foe" }) => (
     <Footer />
     <style jsx global>
     {`
+      ::selection {
+        background-color: white;
+        color: black;
+      }
+
       html, body {
         margin: 0;
         padding: 0;
