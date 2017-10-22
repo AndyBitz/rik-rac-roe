@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Footer from './footer'
 
 
-export default ({ children, title="Fik-Fak-Foe" }) => (
+export default ({ children, title="Rik-Rac-Roe" }) => (
   <main>
     <Head>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
