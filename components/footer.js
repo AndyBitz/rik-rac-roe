@@ -7,6 +7,8 @@ export default () => (
         text-align: center;
         font-size: .8em;
         opacity: .5;
+        margin-top: .5em;
+        margin-bottom: .5em;
       }
 
       a {

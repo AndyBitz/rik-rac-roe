@@ -11,8 +11,20 @@ export default ({ children }) => (
       @media (min-width: 768px) {
         section {
           flex-direction: row;
-          max-width: 1200px;
+          max-width: 700px;
           margin: auto;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        section {
+          max-width: 800px;
+        }
+      }
+
+      @media (min-width: 1920px) {
+        section {
+          max-width: 1200px;
         }
       }
     `}

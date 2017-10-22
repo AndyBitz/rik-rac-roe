@@ -8,6 +8,7 @@ import MenuBar from '../../components/menu-bar'
 import TurnDisplay from '../../components/turn-display'
 import IngameControls from '../../components/ingame-controls'
 import Winner from '../../components/winner'
+import RulesPage from '../../components/rules-page'
 import GameLayout, {
   GameInfoLayout
 } from '../../components/game-layout'
@@ -20,6 +21,7 @@ export default class extends Component {
 
   constructor(props) {
     super(props)
+    this.toggleRulesPage = this.toggleRulesPage.bind(this)
     this.set = this.set.bind(this)
     this.nextPlayer = this.nextPlayer.bind(this)
     this.checkStatus = this.checkStatus.bind(this)
@@ -35,7 +37,8 @@ export default class extends Component {
 
     this.state = {
       gamestate: this.getDefaultGameState(),
-      wins: this.getPrevScore()
+      wins: this.getPrevScore(),
+      isRulesPageOpen: false
     }
   }
 
@@ -70,6 +73,12 @@ export default class extends Component {
       grids,
       turningPlayer: 1
     }
+  }
+
+  toggleRulesPage() {
+    this.setState(prevState => ({
+      isRulesPageOpen: !prevState.isRulesPageOpen
+    }))
   }
 
   nextPlayer() {
@@ -280,7 +289,9 @@ export default class extends Component {
 
     return (
       <Layout>
-        <MenuBar />
+        <MenuBar
+          toggleRulesPage={this.toggleRulesPage}
+        />
         <GameLayout>
         { winner ? 
           <Winner
@@ -303,6 +314,9 @@ export default class extends Component {
           />
         </GameInfoLayout>
         </GameLayout>
+
+        { /* Overlays */ }
+        { this.state.isRulesPageOpen && <RulesPage /> }
       </Layout>
     )
   }
