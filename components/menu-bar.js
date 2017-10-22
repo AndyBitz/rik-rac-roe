@@ -20,7 +20,7 @@ export default ({ toggleRulesPage }) => (
         </a>
       </Link>
     </div>
-    <div style={{fontFamily: 'monospace'}}>Fik-Fak-Foe</div>
+    <div style={{fontFamily: 'monospace'}}>Rik-Rac-Roe</div>
     <div>
       <a onClick={toggleRulesPage}>
         <Icon children={<InfoOutline />} />

@@ -9,14 +9,14 @@ import Button from '../components/button'
 
 export default () => (
   <Layout>
-    <H style={{ textAlign: 'center' }}>Fik-Fak-Foe</H>
+    <H style={{ textAlign: 'center' }}>Rik-Rac-Roe</H>
     <P style={{ textAlign: 'center' }}>
       Tik Tak Toe for the really bored.<br />
       <span style={{ fontSize: '.9em' }}>Or the challange seekers.</span>
     </P>
     <Center>
       <Button primary={true}>
-        <Link href="/games/fikfakfoe"><a>Play Local</a></Link>
+        <Link href="/games/rikracroe"><a>Play Local</a></Link>
       </Button>
     </Center>
     <div style={{ marginTop: '2em' }} />
