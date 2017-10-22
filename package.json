@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "next start",
-    "build": "next build && next export && mv ./out ./rik-rac-roe",
+    "build": "next build && next export && rm -Rf ./rik-rac-roe && mv ./out ./rik-rac-roe",
     "dev": "next"
   },
   "author": "Andy Bitz",
