@@ -16,7 +16,7 @@ export default ({ children, primary, ...rest }) => {
           border-radius: 3px;
           background: none;
           background-color: #1c1c1c;
-          color: #ccc;
+          color: #fff;
           font-size: .8em;
           padding: .5em 1em;
           box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
