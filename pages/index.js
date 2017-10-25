@@ -14,6 +14,7 @@ export default () => (
       Tik Tak Toe for the really bored.<br />
       <span style={{ fontSize: '.9em' }}>Or the challange seekers.</span>
     </P>
+    <FrontVideo />
     <Center>
       <Link href="/games/rikracroe">
         <a>
@@ -37,3 +38,33 @@ export default () => (
   </Layout>
 )
 
+const FrontVideo = () => (
+  <section>
+    <video autoPlay loop>
+      <source src="/static/front.mp4" type="video/mp4" />
+    </video>
+    <style jsx>
+    {`
+      section {
+        margin: auto;
+        max-width: 400px;
+      }
+
+      video {
+        max-width: 100%;
+        transform: scaleY(0);
+        animation: show-video 300ms 400ms forwards ease-in-out;
+      }
+
+      @keyframes show-video {
+        from {
+          transform: scaleY(0);
+        }
+        to {
+          transform: scaleY(1);
+        }
+      }
+    `}
+    </style>
+  </section>
+)
