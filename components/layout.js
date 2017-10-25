@@ -13,7 +13,27 @@ export default ({ children, title="Rik-Rac-Roe" }) => (
       <meta name="robots" content="index, follow" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <link rel="shortcut icon" href="/static/favicon.png" />
-      { /* TODO: social media tags */ }
+
+      <link rel="home" href="/" />
+
+      <meta name="robots" content="index, follow" />
+      <meta name="description" content="Tik Tak Toe for the really bored. Or the challange seekers." />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Rik-Rac-Roe" />
+      <meta property="og:url" content="https://rik-rac-roe.now.sh" />
+      <meta property="og:image" content="/static/social-media.png" />
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@andybitz_" />
+      
+      <meta name="twitter:title" content="Rik-Rac-Roe" />
+      <meta name="twitter:description" content="Tik Tak Toe for the really bored. Or the challange seekers." />
+      <meta name="twitter:image" content="/static/social-media.png" />
+
+      <meta name="twitter:creator" content="@andybitz_" />
+      <meta name="twitter:url" content="https://rik-rac-roe.now.sh" />
+
       <title>{ title }</title>
     </Head>
     { children }
