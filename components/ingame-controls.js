@@ -27,6 +27,7 @@ export default ({ resetGame, resetScores, undo }) => {
           section :global(button) {
             margin: 0 4px;
             margin-bottom: .5em;
+            width: 100%;
           }
 
           section :global(button:nth-child(1)) {
