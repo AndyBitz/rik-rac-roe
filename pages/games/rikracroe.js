@@ -289,6 +289,7 @@ export default class extends Component {
       <Layout>
         <MenuBar
           toggleRulesPage={this.toggleRulesPage}
+          isOpen={this.state.isRulesPageOpen}
         />
         <GameLayout>
         { winner ? 
@@ -314,7 +315,10 @@ export default class extends Component {
         </GameLayout>
 
         { /* Overlays */ }
-        { this.state.isRulesPageOpen && <RulesPage /> }
+        <RulesPage
+          open={this.state.isRulesPageOpen} 
+          toggleRulesPage={this.toggleRulesPage}
+        />
       </Layout>
     )
   }

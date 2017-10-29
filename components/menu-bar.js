@@ -8,9 +8,10 @@ import Icon from './icon'
 // svg
 import ArrowLeft from './svg/keyboard_arrow_left.svg'
 import InfoOutline from './svg/info_outline.svg'
+import CloseIcon from './svg/close.svg'
 
 
-export default ({ toggleRulesPage }) => (
+export default ({ toggleRulesPage, isOpen }) => (
   <nav>
     <div>
       <Link href="/">
@@ -23,7 +24,7 @@ export default ({ toggleRulesPage }) => (
     <div style={{fontFamily: 'monospace'}}>Rik-Rac-Roe</div>
     <div>
       <a onClick={toggleRulesPage}>
-        <Icon children={<InfoOutline />} />
+        <Icon children={isOpen ? <CloseIcon /> : <InfoOutline />} />
         &nbsp;Rules
       </a>
     </div>
