@@ -31,6 +31,7 @@ export default ({ open=false, toggleRulesPage }) => (
         bottom: 0;
         z-index: 10;
         overflow-x: hidden;
+        pointer-events: none;
       }
 
       section div {
@@ -65,6 +66,10 @@ export default ({ open=false, toggleRulesPage }) => (
         opacity: 0;
         transform: translateX(-100%);
         transition: all 200ms ease-in-out;
+      }
+
+      article.open {
+        pointer-events: auto;
       }
 
       article.open section {

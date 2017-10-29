@@ -1,9 +1,7 @@
 export default ({ children, primary, ...rest }) => {
 
   if (primary) {
-    rest.style = Object.assign(
-      {}, rest.style, { backgroundColor: '#00aced' }
-    )
+    rest.className = `${rest.className} primary`
   }
 
   return (
@@ -22,12 +20,21 @@ export default ({ children, primary, ...rest }) => {
           box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
           cursor: pointer;
           outline: none;
-          transition: all 200ms ease-out;
+          transition: box-shadow 200ms ease-out;
           position: relative;
         }
 
-        button:focus, button:hover {
+        button:hover {
           box-shadow: 0px 2px 4px 2px rgba(0,0,0,.2);
+          background-color: #2a2a2a;
+        }
+
+        button.primary {
+          background-color: #00aced;
+        }
+
+        button.primary:hover {
+          background-color: #37b3e2;
         }
       `}
       </style>
