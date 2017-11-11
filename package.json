@@ -8,7 +8,7 @@
     "dev": "next"
   },
   "author": "Andy Bitz",
-  "license": "ISC",
+  "license": "MIT",
   "babel": {
     "presets": [
       "next/babel"
@@ -18,11 +18,11 @@
     ]
   },
   "dependencies": {
-    "next": "^4.1.3",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "next": "^4.1.4",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0"
   },
   "devDependencies": {
-    "babel-plugin-inline-react-svg": "^0.4.0"
+    "babel-plugin-inline-react-svg": "^0.5.2"
   }
 }
