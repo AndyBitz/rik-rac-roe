@@ -1,7 +1,7 @@
 export default () => (
   <footer>
     Made By <a href="https://twitter.com/andybitz_" target="_blank">AndyBitz</a>
-    <br /><span>Idea By <a href="https://www.youtube.com/channel/UCfYj4Uuv0QxUOtKQdBWfnrQ" target="_blank">Dackel</a></span>
+    <br /><span>Idea By <a href="https://twitter.com/BusseDackel" target="_blank">Dackel</a></span>
     <style jsx>
     {`
       footer {
