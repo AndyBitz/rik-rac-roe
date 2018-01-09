@@ -82,15 +82,18 @@ export default ({ fields, owner, avail }) => {
         section {
           transition: all 200ms ease-out;
         }
+
         section.disabled {
           opacity: .6;
           transform: scale(.8);
         }
+
         .grid-lines {
           stroke: #ffffff;
           stroke-width: 3;
           stroke-linecap: round;
         }
+
         g line {
           stroke: #ffffff;
         }

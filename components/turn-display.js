@@ -17,6 +17,7 @@ export default ({ wins, turningPlayer }) => {
           margin: .5em;
           opacity: .5;
         }
+
         @media (min-width: 768px) {
           div {
             order: 1;
@@ -27,11 +28,13 @@ export default ({ wins, turningPlayer }) => {
         p {
           display: inline-block;
         }
+
         span:first-child {
           color: rgba(255,255,255,.5);
           font-size: .75em;
           display: inline-block;
         }
+
         span:last-child {
           color: rgba(255,255,255,1);
           font-size: 1em;

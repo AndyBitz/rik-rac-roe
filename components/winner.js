@@ -25,6 +25,7 @@ export default ({ winner, rematch, undo }) => (
         align-items: center;
         background-color: rgba(0,0,0,.6);
         font-size: 1.2em;
+        z-index: 10;
       }
 
       section>div {

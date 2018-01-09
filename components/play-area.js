@@ -11,7 +11,9 @@ const GridRow = ({ children }) => (
 
     <style jsx>
     {`
-      display: flex;
+      div {
+        display: flex;
+      }
     `}
     </style>
   </div>

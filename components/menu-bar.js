@@ -5,9 +5,9 @@ import Link from 'next/link'
 import Icon from './icon'
 
 // svg
-import ArrowLeft from './svg/keyboard_arrow_left.svg'
-import InfoOutline from './svg/info_outline.svg'
-import CloseIcon from './svg/close.svg'
+import ArrowLeft from '../vectors/keyboard-arrow-left.svg'
+import InfoOutline from '../vectors/info-outline.svg'
+import CloseIcon from '../vectors/close.svg'
 
 
 export default ({ toggleRulesPage, isOpen }) => (
@@ -55,9 +55,11 @@ export default ({ toggleRulesPage, isOpen }) => (
       div:first-child {
         font-size: .8em;
       }
+
       div:nth-child(2) {
         text-align: center;
       }
+
       div:last-child {
         text-align: right;
         font-size: .8em;
