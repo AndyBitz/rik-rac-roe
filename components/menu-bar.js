@@ -5,9 +5,9 @@ import Link from 'next/link'
 import Icon from './icon'
 
 // svg
-import ArrowLeft from '../vectors/keyboard-arrow-left.svg'
-import InfoOutline from '../vectors/info-outline.svg'
-import CloseIcon from '../vectors/close.svg'
+import ArrowLeft from '../vectors/keyboard-arrow-left'
+import InfoOutline from '../vectors/info-outline'
+import CloseIcon from '../vectors/close'
 
 
 export default ({ toggleRulesPage, isOpen }) => (

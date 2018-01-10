@@ -9,20 +9,10 @@
   },
   "author": "Andy Bitz",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "next/babel"
-    ],
-    "plugins": [
-      "inline-react-svg"
-    ]
-  },
   "dependencies": {
     "next": "^4.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
-  "devDependencies": {
-    "babel-plugin-inline-react-svg": "^0.2.0"
-  }
+  "devDependencies": {}
 }
