@@ -1,8 +1,16 @@
 // packages
 import Head from 'next/head'
+import Router from 'next/router'
 
 // components
 import Footer from './footer'
+
+
+// handle router events in google analytics
+Router.onRouteChangeStart = (url) => {
+  window.ga('set', 'page', url)
+  window.ga('send', 'pageview')
+}
 
 
 export default ({ children, title="Rik-Rac-Roe" }) => (
@@ -34,16 +42,10 @@ export default ({ children, title="Rik-Rac-Roe" }) => (
       <meta name="twitter:creator" content="@andybitz_" />
       <meta name="twitter:url" content="https://rik-rac-roe.now.sh" />
 
-      <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5WKT69Z');`}} />
-      <noscript dangerouslySetInnerHTML={{__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WKT69Z"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`}} />
-
+      <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5WKT69Z');`}} />
       <title>{ title }</title>
     </Head>
+    <noscript dangerouslySetInnerHTML={{__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WKT69Z" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}} />
     { children }
     <Footer />
     <style jsx global>
