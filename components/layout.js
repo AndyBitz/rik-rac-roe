@@ -8,8 +8,11 @@ import Footer from './footer'
 
 // handle router events in google analytics
 Router.onRouteChangeStart = (url) => {
-  window.ga('set', 'page', url)
-  window.ga('send', 'pageview')
+  try {
+    const tracker = window.ga.getAll()[0]
+    tracker.set('page', url)
+    tracker.send('pageview')
+  } catch(err) {}
 }
 
 
