@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "next start",
-    "build": "next build && next export && rm -Rf ./rik-rac-roe && mv ./out ./rik-rac-roe",
+    "export": "next build && next export",
     "dev": "next"
   },
   "author": "Andy Bitz",
   "license": "MIT",
   "dependencies": {
-    "next": "^4.2.2",
+    "next": "^4.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
