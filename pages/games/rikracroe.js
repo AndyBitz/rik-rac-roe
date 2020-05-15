@@ -1,7 +1,4 @@
-// packages
 import { Component } from 'react'
-
-// components
 import Layout from '../../components/layout'
 import PlayArea from '../../components/play-area'
 import MenuBar from '../../components/menu-bar'
@@ -13,12 +10,7 @@ import GameLayout, {
   GameInfoLayout
 } from '../../components/game-layout'
 
-
 export default class extends Component {
-  static async getInitialProps() {
-    return { }
-  }
-
   constructor(props) {
     super(props)
     this.toggleRulesPage = this.toggleRulesPage.bind(this)
@@ -139,7 +131,7 @@ export default class extends Component {
 
     // add to history stack
     this.addToHistory(grid, field)
-    
+
     // check fields for a horizontal, vertical or diagonal row
     newState = this.checkStatus(newState)
 
@@ -202,7 +194,7 @@ export default class extends Component {
    * return owner or null
    */
   checkPatterns(fields) {
-    const own = []    
+    const own = []
 
     for (let fi in fields) {
       const field = fields[fi]
@@ -292,7 +284,7 @@ export default class extends Component {
           isOpen={this.state.isRulesPageOpen}
         />
         <GameLayout>
-        { winner ? 
+        { winner ?
           <Winner
             winner={winner}
             rematch={() => this.rematch(winner)}
@@ -316,7 +308,7 @@ export default class extends Component {
 
         { /* Overlays */ }
         <RulesPage
-          open={this.state.isRulesPageOpen} 
+          open={this.state.isRulesPageOpen}
           toggleRulesPage={this.toggleRulesPage}
         />
       </Layout>

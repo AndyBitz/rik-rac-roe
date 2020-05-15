@@ -1,17 +1,18 @@
 {
   "name": "rik-rac-roe",
-  "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "main": "pages/index.js",
   "scripts": {
-    "export": "next build && next export",
-    "dev": "next"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "author": "Andy Bitz",
   "license": "MIT",
   "dependencies": {
-    "next": "^4.2.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "next": "9.4.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {}
 }

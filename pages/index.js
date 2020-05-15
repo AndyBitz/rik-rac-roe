@@ -1,11 +1,7 @@
-// packages
 import Link from 'next/link'
-
-// components
 import Layout from '../components/layout'
-import { P, H, Center } from '../components/text'
 import Button from '../components/button'
-
+import { P, H, Center } from '../components/text'
 
 export default () => (
   <Layout>
